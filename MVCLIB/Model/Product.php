@@ -44,16 +44,26 @@ class Model_Product extends Model_Abstract
         // echo $sql;
         // print_r($data);
     }
-    public function show($column = "*", $condition = "")
-    {
-        echo "<pre>";
-        $sql = $this->getQueryBuilder()->selectQuery(
-            $this->tableName,
-            $column,
-            $condition
-        );
-        $result = $this->getQueryBuilder()->exec($sql);
-        return $this->getQueryBuilder()->fetch_asso($result);
+    public function show($columns = "*", $condition = [])
+{
+    // Ensure $columns is a string
+    if (!is_string($columns)) {
+        $columns = implode(', ', $columns);
     }
+
+    // Ensure $condition is a string
+    if (is_array($condition) && !empty($condition)) {
+        $conditions = [];
+        foreach ($condition as $key => $value) {
+            $conditions[] = "$key = '$value'";
+        }
+        $condition = implode(' AND ', $conditions);
+    }
+
+    $sql = $this->getQueryBuilder()->selectQuery($this->tableName, $columns, $condition);
+    $result = $this->getQueryBuilder()->exec($sql);
+
+    return $this->getQueryBuilder()->fetch_asso($result);
+}
     
 }
