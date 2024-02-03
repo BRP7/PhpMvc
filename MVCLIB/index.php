@@ -31,19 +31,29 @@ if (!$request->isPost()) {
 }
 
 // Handle edit and delete actions
-if (isset($_GET['action']) && !empty($_GET['action'])) {
-    $action = $_GET['action'];
-    $productId = $_GET['id'];
 
-    if ($action === 'edit') {
-        // Fetch the product details and display the form for editing
-        $productDetails = $productModel->show('*', ['product_id' => $productId]);
-        $productView = new View_Product();
-        echo $productView->createForm($productDetails[0]);
-        exit();
-    } elseif ($action === 'delete') {
-        // ... existing code
+    if (isset($_GET['action']) && !empty($_GET['action'])) {
+        $action = $_GET['action'];
+        $productId = $_GET['id'];
+    
+        if ($action === 'edit') {
+            // Fetch the product details and display the form for editing
+            $productDetails = $productModel->show('*', ['product_id' => $productId]);
+            echo $productView->createForm($productDetails[0]);
+            exit();
+        } elseif ($action === 'delete') {
+            // Delete the product and redirect to index.php
+            $productModel->del(['product_id' => $productId]);
+            header("Location: index.php");
+            exit();
+        }
     }
-}
+
+
+
+
 
 ?>
+
+
+

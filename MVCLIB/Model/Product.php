@@ -21,28 +21,25 @@ class Model_Product extends Model_Abstract
         // print_r($data);
     }
 
-        public function update($data,$condition)
+    public function update($data, $condition)
     {
-        echo "<pre>";
         $sql = $this->getQueryBuilder()->update(
-                $this->tableName,
-                $data,
-                $condition
-            );
-         $this->getQueryBuilder()->exec($sql);
-        // echo $sql;
-        // print_r($data);
+            $this->tableName,
+            $data,
+            $condition
+        );
+
+        $this->getQueryBuilder()->exec($sql);
     }
-        public function del($condition)
+
+    public function del($condition)
     {
-        echo "<pre>";
         $sql = $this->getQueryBuilder()->delete(
-                $this->tableName,
-                $condition
-            );
-         $this->getQueryBuilder()->exec($sql);
-        // echo $sql;
-        // print_r($data);
+            $this->tableName,
+            $condition
+        );
+
+        $this->getQueryBuilder()->exec($sql);
     }
     public function show($columns = "*", $condition = [])
 {
