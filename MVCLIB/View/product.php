@@ -1,56 +1,54 @@
 <?php
 class View_Product
 {
-    public function __construct()
-    {
+    // public function __construct()
+    // {
 
-    }
+    // }
 
-    public function createForm($productDetails = [])
+    public function createForm($productDetails)
     {
         $form = '<form action="" method="POST">';
         $form .= '<div>';
-        // if (!empty($productDetails['product_id'])) {
-            $form .= 'Product Id : <input  name="pdata[product_id]" value="' . $productDetails['product_id'] . '">';
-            $form .= '</div>';
-    
-        $form .= '<div>';
-        $form .= $this->creteTextField('pdata[product_name]', "Product Name: ", $productDetails['product_name'] ?? '');
+        $form .= $this->creteTextField('pdata[product_id]', "Product Id: ", $productDetails['product_id'] ?? ''); // Assuming 'product_name' is a key in $productDetails
         $form .= '</div>';
-    
+        $form .= '<div>';
+        $form .= $this->creteTextField('pdata[product_name]', "Product Name: ", $productDetails['product_name'] ?? ''); // Assuming 'product_name' is a key in $productDetails
+        $form .= '</div>';
+
         $form .= '<div>';
         $form .= $this->creteTextField('pdata[sku]', "Sku: ", $productDetails['sku'] ?? '');
         $form .= '</div>';
-    
+
         $form .= '<div>';
         $form .= $this->creteTextField('pdata[price]', "Price: ", $productDetails['price'] ?? '');
         $form .= '</div>';
-    
+
         $form .= '<div>';
         $form .= $this->creteTextField('pdata[manufacturer_cost]', "Cost: ", $productDetails['manufacturer_cost'] ?? '');
         $form .= '</div>';
-    
+
         $form .= '<div>';
         $form .= $this->createSelectField('pdata[category]', 'Category', ['' => 'Select Category', 'Living room', 'Dining & kitchen', 'Office', 'Mattresses', 'Bar & Game Room', 'Outdoor', 'Decor', 'Lighting'], $productDetails['category'] ?? '');
         $form .= '</div>';
-    
+
         $form .= '<div>';
         $form .= $this->createRadioBtn('pdata[status]', 'Status', ['Enabled', 'Disabled'], $productDetails['status'] ?? '');
         $form .= '</div>';
-    
+
         $form .= '<div>';
         $form .= $this->createRadioBtn('pdata[product_type]', 'Product Type', ['Simple', 'Bundle'], $productDetails['product_type'] ?? '');
         $form .= '</div>';
-    
+
         $form .= '<div>';
         $form .= $this->creteSubmitBtn('Submit');
         $form .= '</div>';
-    
+
         $form .= '</form>';
-    
+
         return $form;
     }
-    
+
     public function creteTextField($name, $title, $value = '', $id = '')
     {
         return '<span> ' . $title . ' </span><input id="' . $id . '" type="text" name="' . $name . '" value="' . $value . '">';
@@ -88,10 +86,10 @@ class View_Product
 
     public function toHtml($products)
     {
-        $html = '<a href="index.php?action=insert&id=2">Add New Product</a><br>';
+        $html = '<a href="index.php">Add New Product</a><br>';
         $html .= '<table border="1">';
         $html .= '<tr><th>Product Name</th><th>Actions</th></tr>';
-    
+
         foreach ($products as $product) {
             $html .= '<tr>';
             $html .= '<td>' . $product['product_name'] . '</td>';
@@ -99,10 +97,9 @@ class View_Product
             $html .= ' | <a href="index.php?action=delete&id=' . $product['product_id'] . '">Delete</a></td>';
             $html .= '</tr>';
         }
-    
+
         $html .= '</table>';
-    
+
         return $html;
     }
-    
 }
