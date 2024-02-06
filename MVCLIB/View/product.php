@@ -6,14 +6,14 @@ class View_Product
 
     // }
 
-    public function createForm($productDetails)
+    public function createForm($productDetails=[])
     {
         $form = '<form action="" method="POST">';
         $form .= '<div>';
-        $form .= $this->creteTextField('pdata[product_id]', "Product Id: ", $productDetails['product_id'] ?? ''); // Assuming 'product_name' is a key in $productDetails
+        $form .= $this->creteTextField('pdata[product_id]', "Product Id: ", $productDetails['product_id'] ?? '');
         $form .= '</div>';
         $form .= '<div>';
-        $form .= $this->creteTextField('pdata[product_name]', "Product Name: ", $productDetails['product_name'] ?? ''); // Assuming 'product_name' is a key in $productDetails
+        $form .= $this->creteTextField('pdata[product_name]', "Product Name: ", $productDetails['product_name'] ?? ''); 
         $form .= '</div>';
 
         $form .= '<div>';
@@ -83,10 +83,15 @@ class View_Product
     {
         return '<input type="submit" name="submit" value="'.$title.'">';
     }
-
+ 
+    //for only frontclass in controller
+    // public function toHtml(){
+    //     echo "product file";
+    // }
     public function toHtml($products)
     {
-        $html = '<a href="index.php">Add New Product</a><br>';
+        echo "product file";
+        $html = '<a href="index.php?action=add">Add New Product</a><br>';
         $html .= '<table border="1">';
         $html .= '<tr><th>Product Name</th><th>Actions</th></tr>';
 

@@ -51,7 +51,6 @@ class Model_Product extends Model_Abstract
         $columns = implode(', ', $columns);
     }
 
-    // Ensure $condition is a string
     if (is_array($condition) && !empty($condition)) {
         $conditions = [];
         foreach ($condition as $key => $value) {

@@ -11,7 +11,7 @@ class Lib_Sql_Query_Builder extends Lib_Connection
         $columns = $values = [];
         foreach ($data as $key => $value) {
             $columns[] = sprintf("`%s`", $key);
-            $values[]  = sprintf("'%s'", addslashes($value));
+            $values[]  = sprintf("'%s'", ($value));
         }
         $columns = implode(",", $columns);
         $values = implode(",", $values);

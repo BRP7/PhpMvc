@@ -32,9 +32,15 @@ class Model_Request {
 
 	public function isPost()
 	{
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		    return true;
 		}
 		return false;
+	}
+
+	public function getRequestUri(){
+		$requstUri = $_SERVER['REQUEST_URI'];
+		$str=str_replace('/phpPra/MVCLIB','',$requstUri);
+		return $str;
 	}
 }
