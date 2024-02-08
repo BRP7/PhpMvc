@@ -37,10 +37,4 @@ class Model_Request {
 		}
 		return false;
 	}
-
-	public function getRequestUri(){
-		$requstUri = $_SERVER['REQUEST_URI'];
-		$str=str_replace('/phpPra/MVCLIB','',$requstUri);
-		return $str;
-	}
 }
