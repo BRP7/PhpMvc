@@ -1,6 +1,6 @@
 <?php 
 echo $this->getRequest()->getParams('id')."<br>"; 
-$productModel = Mage::getModel('product/product')->load(10);
+$productModel = Mage::getModel('catalog/product')->load(10);
 echo "<pre>";
 // print_r($productModel->load(1));
 print_r($productModel->getId());
