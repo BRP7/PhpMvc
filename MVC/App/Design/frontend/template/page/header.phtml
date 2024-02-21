@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>header.phtml</div>
-</body>
-</html>
+
+ 
+<header class="header">
+    <div class="logoContainer">
+        <div class="logo">
+            <img src="<?php echo Mage::getBaseUrl('skin/image/logo.jpg')?>" alt="Logo" width="55" height="40"> 
+        </div>
+        <span class="title">Project</span>
+    </div>
+    <nav class="nav">
+        <ul>
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+        </ul>
+    </nav>
+</header>

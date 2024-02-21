@@ -1,6 +1,7 @@
 <?php
 class Mage
    {
+      private static $baseUrl="http://localhost/practice/MVC";
     private static $registry = [];
     private static $baseDir= 'C:/xampp/htdocs/practice/MVC';
     public static function init(){
@@ -43,6 +44,12 @@ public static function register($key, $value)
 }
 public static function registry($key)
 {
+}
+public static function getBaseUrl($subUrl){
+   if ($subUrl) {
+       return self::$baseUrl . '/' . $subUrl;
+   }
+   return self::$baseUrl;
 }
 public static function getBaseDir($subDir = null)
 {

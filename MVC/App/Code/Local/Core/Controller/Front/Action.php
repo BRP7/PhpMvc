@@ -4,8 +4,8 @@ class Core_Controller_Front_Action{
     protected $_layout= null ;
     public function getLayout(){
       if(is_null($this->_layout)){  //check krva mate null che ke nai layout
-        $layout =  Mage::getBlock("core/layout");
-        return $layout;
+        $this->_layout =  Mage::getBlock("core/layout");
+        return $this->_layout;
       }
        return $this->_layout;
 }

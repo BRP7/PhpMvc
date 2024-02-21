@@ -5,24 +5,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product Information</title>
-        <?php echo ($this->getChildHtml('head')); ?>
+        <?php echo $this->getChildHtml('head'); ?>
     </head>
 
     <body>
         <!-- <h1>Good Day ! Hope This Day Brings You New Joy(❁´◡`❁)</h1> -->
         <div>
-            <?php echo ($this->getChildHtml('header')); ?>
+            <?php echo $this->getChildHtml('header'); ?>
         </div>
         
         <div>
-            <?php echo ($this->getChildHtml('messages')); ?>
+            <?php 
+                    // echo $this->getChildHtml('messages');
+             ?>
         </div>
         
         <div>
-            <?php echo ($this->getChildHtml('footer')); ?>
+            <?php echo $this->getChildHtml('content'); ?>
         </div>
         <div>
-            <?php echo ($this->getChildHtml('content')); ?>
+            <?php echo $this->getChildHtml('footer'); ?>
         </div>
     </body>
 
