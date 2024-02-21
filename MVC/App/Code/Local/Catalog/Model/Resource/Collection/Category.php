@@ -1,5 +1,5 @@
 <?php
-class Catagory_Model_Resource_Collection_Category{
+class Catalog_Model_Resource_Collection_Category{
 
 }
 ?>
