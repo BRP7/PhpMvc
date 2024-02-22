@@ -34,14 +34,15 @@ class Core_Model_Resource_Abstract {
             echo $sql;
             $id = $this->getAdapter()->insert($sql);
             $product->setId($id);
-            print_r($product->getData());
+            // print_r($product->getData());
         }
     }
     
-    public function delete(Catalog_Model_Product $product){
-        $id = $product->getData();
-        $sql = $this->deleteSql($this->getTableName(), $id);
+    public function delete($id){
+        $where = [$this->_primaryKey=>$id];
+        $sql = $this->deleteSql($this->getTableName(), $where);
         $this->getAdapter()->delete($sql); 
+
     }
     
     function editSql( $table, $data, $condition=[]) {

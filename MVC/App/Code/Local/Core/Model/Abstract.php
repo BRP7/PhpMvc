@@ -67,9 +67,12 @@ class Core_Model_Abstract{
     }
     public function load($id, $column=null){
     //    $this->getResource();
-    $this->_data=$this->getResource()->load($id, $column);
+    $this->_data=$this->getResource()->load($id, $column);//Catalog_Model_Resource_Product
     return $this;
     }
-    public function delete(){}
+    public function delete($id){
+        $this->getResource()->delete($id);
+        return $this;
+    }
 
 }

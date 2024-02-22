@@ -24,7 +24,7 @@ body, h1, h2, h3, p, ul, li {
 }
 
 .footer-section h3 {
-    color: #ffd700; /* Yellow color for heading */
+    color: #5383d3; /* Yellow color for heading */
 }
 
 .footer-section p {
@@ -47,7 +47,7 @@ body, h1, h2, h3, p, ul, li {
 }
 
 .footer-section a:hover {
-    color: #ffd700; /* Yellow color on hover */
+    color:  #5383d3; /* Yellow color on hover */
 }
 
 .footer-bottom {

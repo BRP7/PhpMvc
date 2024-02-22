@@ -15,7 +15,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $this->setFormCss();
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $productForm = $layout->createBlock('catalog/admin_product');
+        $productForm = $layout->createBlock('catalog/admin_product');//catalog_block_admin_product
         $child->addChild('form', $productForm);
         $layout->toHtml();
         // print_r($layout->getChild('head')->getCss());
@@ -23,6 +23,10 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
 
     public function saveAction()
     {
+        //Admin_Controller_Catalog_Product (id check update and inser)
+        //Catalog_Model_Product->Core_Model_Abstract->setData->data variable ma store(data)
+        //catalog_Model_Product->Core_Model_Abstract->save->Catalog_Model_Reasource_Product(obj)->save()
+        //Catalog_Model_Reasource_Product->constructor->init()->Core_Model_Resource_Abstract->save->inser query->adapter->execute  
         echo "<pre>";
         $obj = Mage::getModel('core/request');
         $id = $obj->getQueryData('id');
@@ -40,11 +44,9 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     }
     public function deleteAction()
     {
-        $obj = Mage::getModel('core/request');
-        $id = $obj->getQueryData('id');
-        $product = Mage::getModel('catalog/product')
-            ->setData(['product_id' => $id]);
-        $product->delete();
+        $product= Mage::getModel('catalog/product');
+        $id= $this->getRequest()->getParams('id');
+          $product->delete($id);
     }
 
     // public function saveAction(){
@@ -58,7 +60,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     // }
     public function updateAction(){
         // echo "<pre>";
-        $this->includeCss();
+        // $this->includeCss();
         $data= ["name"=>"Hello"];
         $product = Mage::getModel('catalog/product')
                 ->setData($data)
