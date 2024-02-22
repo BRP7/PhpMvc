@@ -31,7 +31,7 @@ class Core_Model_Abstract{
         // $modelClass = str_replace('_Model_', '_Model_Resource_', $modelClass);        
         // return new $modelClass();
 
-       return new $this->_resourceClass();
+       return new $this->_resourceClass();//Catalog_Model_Resource_Product()->for classname 
     }
     public function getCollection(){}
    
@@ -62,7 +62,7 @@ class Core_Model_Abstract{
     public function addData($key, $value){}
     public function removeData($key = null){}
     public function save(){
-        $this->getResource()->save($this);
+        $this->getResource()->save($this);//getREsource Catalog_Model_Reasource_Product->obj
         return $this;
     }
     public function load($id, $column=null){

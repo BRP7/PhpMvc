@@ -3,39 +3,69 @@
 class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
 {
     
-    public function includeCss()
+    public function setFormCss()
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('header.css')
-            ->addCss('footer.css')
             ->addCss('form.css');
             // print_r($layout->getChild('head')->getCss());
     }
     public function formAction()
     { 
-        $this->includeCss();
+        $this->setFormCss();
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
         $productForm = $layout->createBlock('catalog/admin_product');
         $child->addChild('form', $productForm);
         $layout->toHtml();
         // print_r($layout->getChild('head')->getCss());
-        
-
     }
 
-    public function saveAction(){
+    public function saveAction()
+    {
+        echo "<pre>";
+        $obj = Mage::getModel('core/request');
+        $id = $obj->getQueryData('id');
+
+        if ($id) {
+            $data = ['name' => 'BMW'];
+        } else {
+            $data = $this->getRequest()->getParams('catalog_product');
+        }
+        $product = Mage::getModel('catalog/product')
+            ->setData($data);
+        $product->save();
+
+
+    }
+    public function deleteAction()
+    {
+        $obj = Mage::getModel('core/request');
+        $id = $obj->getQueryData('id');
+        $product = Mage::getModel('catalog/product')
+            ->setData(['product_id' => $id]);
+        $product->delete();
+    }
+
+    // public function saveAction(){
+    //     // echo "<pre>";
+    //     $this->includeCss();
+    //     $data= $this->getRequest()->getParams('catalog_product');//core_model_request
+    //     $product = Mage::getModel('catalog/product')
+    //             ->setData($data)
+    //             ->save();
+    //     // print_r($product);
+    // }
+    public function updateAction(){
         // echo "<pre>";
         $this->includeCss();
-        $data= $this->getRequest()->getParams('catalog_product');//core_model_request
+        $data= ["name"=>"Hello"];
         $product = Mage::getModel('catalog/product')
                 ->setData($data)
-                ->save();
-        // print_r($product);
+                ->update();
+        print_r($product);
     }
-
-
+}
 
 
 
@@ -77,4 +107,3 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     // }
 
 
-}

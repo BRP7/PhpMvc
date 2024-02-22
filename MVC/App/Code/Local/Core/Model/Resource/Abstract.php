@@ -19,19 +19,55 @@ class Core_Model_Resource_Abstract {
         return $this->getAdapter()->fetchRow($query);
     }
     public function save(Catalog_Model_Product $product){
-        $data = $product->getData();
-        if(isset($data[$this->getPrimaryKey()])){  
-            unset($data[$this->getPrimaryKey()]);
-         }
-        // echo $this->insertSql($this->getTableName(),$data);
-        $sql =  $this->insertSql($this->getTableName(),$data);
-        $id = $this->getAdapter()->insert($sql);
-        $product->setId($id);
-        // var_dump($id);
-        // print_r($product->getData());
-        
-        // echo 8999;
-        // print_r($data);
+        $obj = Mage::getModel('core/request');
+        $id = $obj->getQueryData('id');
+        if ($id) {
+            $data = $product->getData();
+            $sql = $this->editSql($this->getTableName(), $data, ['product_id' => $id]);
+            $id = $this->getAdapter()->update($sql);
+        } else {
+            $data = $product->getData();
+            if (isset($data[$this->getPrimaryKey()])) {
+                unset($data[$this->getPrimaryKey()]);
+            }
+            $sql = $this->insertSql($this->getTableName(), $data);
+            echo $sql;
+            $id = $this->getAdapter()->insert($sql);
+            $product->setId($id);
+            print_r($product->getData());
+        }
+    }
+    
+    public function delete(Catalog_Model_Product $product){
+        $id = $product->getData();
+        $sql = $this->deleteSql($this->getTableName(), $id);
+        $this->getAdapter()->delete($sql); 
+    }
+    
+    function editSql( $table, $data, $condition=[]) {
+        $set = "";
+        foreach ($data as $key => $value) {
+            $set .= "$key = '$value', ";
+        }
+        $set = rtrim($set, ", ");
+    
+        $conditions = "";
+        foreach ($condition as $key => $value) {
+            $conditions .= "$key = '$value' AND ";
+        }
+        $conditions = rtrim($conditions, " AND ");
+        $query = "UPDATE $table SET $set WHERE $conditions";
+        return $query;
+    }
+    public function deleteSql($table_name, $where)
+    {
+        $where_con_arr = [];
+        foreach ($where as $field => $value) {
+            $where_con_arr[] = "`$field`='$value'";
+        }
+        $where_con_str = implode(" AND ", $where_con_arr);
+        return "DELETE FROM {$table_name} WHERE {$where_con_str}";
+
     }
 
     public function insertSql($tableName, $data)

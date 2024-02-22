@@ -13,6 +13,7 @@ class Core_Model_Request
 				: ''
 			);
 	}
+	
 
 	public function getPostData($key = '')
 	{

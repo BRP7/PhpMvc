@@ -1,6 +1,14 @@
 <?php
    
 class Core_Controller_Front_Action{
+
+  public function __construct(){
+    $layout = $this->getLayout();
+    $layout->getChild("head")
+    ->addCss("header.css")
+    ->addCss("footer.css");
+  }
+
     protected $_layout= null ;
     public function getLayout(){
       if(is_null($this->_layout)){  //check krva mate null che ke nai layout

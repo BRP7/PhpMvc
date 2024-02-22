@@ -10,26 +10,21 @@ class Page_Block_Head extends Core_Block_Template{
         return $this;
     }
     public function addCss($file){
-        // $fullPath = Mage::getBaseDir('Skin')."/Css/".ucfirst($file);
         $this->_css[] = $file;
-        // print_r($this->_css);
-
         return $this;   
     }
 
     public function getCssUrl($_css){
-        return Mage::getBaseUrl('Skin/Css/' . $_css);
+        return Mage::getBaseUrl('skin/css/' . $_css);
     }
     public function getJsUrl($_js){
-        return Mage::getBaseUrl('/Skin/Js/'. $_js);
+        return Mage::getBaseUrl('/skin/js/'. $_js);
     }
 
     public function getJs(){
         return $this->_js;
     }
     public function getCss(){
-        // echo "<br>";
-        // print_r($this->_css);
         return $this->_css;
     }
 }

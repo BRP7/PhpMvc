@@ -52,7 +52,24 @@ class Core_Model_DB_Adapter
             return FALSE;
         }
     }
-
+    public function update($query)
+    {
+        $sql = mysqli_query($this->connect(), $query);
+        if ($sql) {
+            return True;
+        } else {
+            return FALSE;
+        }
+    }
+    public function delete($query)
+    {
+        $sql = mysqli_query($this->connect(), $query);
+        if ($sql) {
+            return True;
+        } else {
+            return FALSE;
+        }
+    }
 
 
 
@@ -65,12 +82,12 @@ class Core_Model_DB_Adapter
     //     } 
 
     
-    public function update($query)
-    {
-    }
-    public function delete($query)
-    {
-    }
+    // public function update($query)
+    // {
+    // }
+    // public function delete($query)
+    // {
+    // }
     public function query($query)
     {
     }
