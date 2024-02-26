@@ -4,7 +4,8 @@ class Core_Controller_Front_Action
     protected $_layout = null;
     public function __construct()
     {
-        $layout = $this->getLayout();
+        // echo "Core_Controller_Front_Action";
+        $layout = $this->getLayout();//at this point Core_Block_Layout constructor will be called
         $layout->getChild('head')
             ->addCss('header.css')
             ->addCss('content.css')

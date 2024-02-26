@@ -3,8 +3,11 @@ class Core_Block_Layout extends Core_Block_Template
 {
     public function __construct()
     {
+        // echo "Core_Block_Layout";
         $this->setTemplate('core/1column.phtml');
+        // die;
         $this->prepareChildren();
+        
     }
     public function prepareChildren()
     {

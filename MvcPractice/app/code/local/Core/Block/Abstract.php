@@ -2,11 +2,17 @@
 class Core_Block_Abstract
 {
     public $template;
+    public $i=0;
     public function setTemplate($template)
     {
         // echo "yyyy".$template;
         // echo "<br>";
         $this->template = $template;
+        // echo"<br>";
+        // print_r($template);
+        // echo "<br>";
+        // echo "SET TEMPLATE".$this->i=$this->i+1;
+        // echo"<br>";
         return $this;
     }
     public function getTemplate()
@@ -48,9 +54,15 @@ class Core_Block_Abstract
     }
     public function render()
     {
-        // echo "hhh".$this->getTemplate();
+        // echo"<br>";
+        // echo "Render".$this->i=$this->i+1;
+        // echo"<br>";
+        // echo "bbb".$this->getTemplate();
+        // echo "<br>";
         // echo "<br>";
         include Mage::getBaseDir('app') . '/design/frontend/template/' . $this->getTemplate();
+        // echo "hhh".$this->getTemplate();
+        // die;
     }
     public function getImageUrl($file)
     {

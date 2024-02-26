@@ -8,6 +8,7 @@ class Core_Model_Abstract
     protected $_collection = null;
     public function __construct()
     {
+        // echo 'Core_Model_Abstract';
         $this->init();
     }
     public function setResourceClass($resourceClass)
@@ -36,7 +37,7 @@ class Core_Model_Abstract
     public function getCollection()
     {
          $collection = new $this->_collectionClass();//obj  Catalog_Model_Resource_Collection_Product
-         $collection->setResource($this->getResource());
+         $collection->setResource($this->getResource());// Catalog_Model_Resource_Product
          $collection->select();
          return $collection;
     }

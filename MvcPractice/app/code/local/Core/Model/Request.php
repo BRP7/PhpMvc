@@ -7,6 +7,7 @@ class Core_Model_Request
 
     public function __construct()
     {
+        // echo "Core_Model_Request";
         $uri = $this->getRequestUri();
         $uri = array_filter(explode('/', $uri));
         $this->_modeluName = isset($uri[0]) ? $uri[0] : 'page';

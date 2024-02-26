@@ -5,6 +5,7 @@ class Core_Block_Template extends Core_Block_Abstract
     public function toHtml()
     {
         $this->render();
+        // die;
     }
     public function addChild($key, $value)
     {

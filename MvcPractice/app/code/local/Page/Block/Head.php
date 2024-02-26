@@ -5,6 +5,7 @@ class Page_Block_Head extends Core_Block_Template
     protected $_js = [];
     public function __construct()
     {
+        // echo "Page_Block_Head";
         $this->setTemplate('page/head.phtml');
     }
     public function addJs($file)
