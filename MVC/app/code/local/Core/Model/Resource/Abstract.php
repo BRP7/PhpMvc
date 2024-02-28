@@ -23,22 +23,22 @@ class Core_Model_Resource_Abstract {
         return $this->getAdapter()->fetchRow($query);
     }
 
-    public function save(Core_Model_Abstract $product)
+    public function save(Core_Model_Abstract $abstract)
     {
-        $data = $product->getData();
+        $data = $abstract->getData();
         // print_r($data);
         if(isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()])){
             unset($data[$this->getPrimaryKey()]);
             $sql = $this->editSql(
                 $this->getTableName(),
                 $data, 
-                [$this->getPrimaryKey()=>$product->getId()]
+                [$this->getPrimaryKey()=>$abstract->getId()]
             );
             $id = $this->getAdapter()->update($sql);
         }else{
         $sql = $this->insertSql($this->getTableName(),$data);
         $id = $this->getAdapter()->insert($sql);
-        $product->setId($id);
+        $abstract->setId($id);
     }
     }
 
