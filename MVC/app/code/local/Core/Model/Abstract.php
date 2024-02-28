@@ -9,6 +9,7 @@ class Core_Model_Abstract{
     protected $_collectionClass = '';
     protected $_resource = null;
     protected $_collection = null;
+    protected $_modelClass = null;
     // public function __construct(){}
     public function setResourceClass($resourceClass){}
     public function setCollectionClass($collectionClass){}
@@ -31,6 +32,7 @@ class Core_Model_Abstract{
     {
         $collection = new $this->_collectionClass(); //Catalog_Model_Resource_Collection_Product ano object malse
         $collection->setResource($this->getResource());    //
+        $collection->setModelCLass($this->_modelClass);    //$collection->setModelClass(get_class($this));
         $collection->select(); //Core_Model_Resource_Collection_Abstract 
         return $collection;
         

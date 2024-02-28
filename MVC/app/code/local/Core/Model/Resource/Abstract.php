@@ -23,7 +23,7 @@ class Core_Model_Resource_Abstract {
         return $this->getAdapter()->fetchRow($query);
     }
 
-    public function save($product)
+    public function save(Core_Model_Abstract $product)
     {
         $data = $product->getData();
         // print_r($data);
