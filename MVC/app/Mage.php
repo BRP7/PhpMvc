@@ -58,7 +58,7 @@ class Mage
 
          return self::$baseUrl . '/' . $subUrl;
       }
-      return self::$baseUrl;
+      return self::$baseUrl.'/';
    }
 
 

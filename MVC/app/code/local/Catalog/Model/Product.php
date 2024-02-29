@@ -7,7 +7,7 @@ class Catalog_Model_Product extends Core_Model_Abstract
     {
         $this->_resourceClass = 'Catalog_Model_Resource_Product';
         $this->_collectionClass = 'Catalog_Model_Resource_Collection_Product';
-        $this->_modelClass = 'catalog/product';
+        // $this->_modelClass = 'catalog/product';
     }
     public function getStatus()
     {
@@ -15,7 +15,9 @@ class Catalog_Model_Product extends Core_Model_Abstract
             1 => "E",
             0 => "D"
         ];
-        return $mapping[$this->_data['status']];
+
+        if(isset($mapping[$this->_status]))
+            return $mapping[$this->_data['status']];
     }
 
     public function getNameFromKey(){

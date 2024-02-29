@@ -1,18 +1,18 @@
 <?php
-class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
 {
 
 
-    public function setFormCss()
-    {
-        $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addCss('category.css');
-    }
+    // public function setFormCss()
+    // {
+    //     $layout = $this->getLayout();
+    //     $layout->getChild('head')
+    //         ->addCss('category.css');
+    // }
     public function formAction()
     {
         $layout = $this->getLayout();
-        $this->setFormCss();
+        $this->setFormCss('form');
         $child = $layout->getChild('content'); //object j return krse content no layout ma create block ma ena class no objec t malse
         $productForm = $layout->createBlock('catalog/admin_category_form');
         $child->addChild('form', $productForm);

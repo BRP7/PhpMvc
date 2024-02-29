@@ -92,7 +92,7 @@ $productModel = $this->getProduct();
             <label for="status">Status : </label>
             <!-- <input type="text" name="catalog_product[status]" id="status"  value="0"> -->
 
-            <select name="catalog_product[status]">
+            <select name="catalog_product[status]" id="status">
                                 <option <?php $productModel->getStatus()?"selected":"" ?> value="0">Disable</option>
                                 <option <?php $productModel->getStatus()?"selected":"" ?> value="1">Enable</option>
                             </select>

@@ -1,16 +1,12 @@
 <?php
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
-    public function setFormCss()
-    {
-        $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addCss('form.css');
-    }
+    protected $_allowedActions = ['form'];
+ 
 
     public function formAction()
     {
-        $this->setFormCss();
+        $this->setFormCss("form");
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
         $productForm = $layout->createBlock('catalog/admin_product_form');//constructor
@@ -24,14 +20,30 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $data = $this->getRequest()->getparams("catalog_product");
         $product = Mage::getModel('catalog/product')
             ->setData($data);
-        $product->save();
+        $result = $product->save();
+        if ($data['product_id']) {
+            if($result){
+                echo '<script>alert("Data updated successfully")</script>';
+                echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_product/list' . "'</script>";
+            }
+        }
+        else{
+            echo '<script>alert("Data inserted successfully")</script>';
+            echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_product/list' . "'</script>";
+        }
+        
     }
 
     public function deleteAction()
     {
         $id = $this->getRequest()->getparams("id");
         $product = Mage::getModel("catalog/product")->load($id);
-        $product->delete();
+        $result = $product->delete();
+        if ($result){
+            echo "<script>alert('data deleted sucessfully')</script>";
+            echo "<script>location.href='" . Mage::getBaseUrl() . '/admin/catalog_product/list' . "'</script>";
+        }
+
     }
 
     public function listAction()
