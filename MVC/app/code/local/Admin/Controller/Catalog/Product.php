@@ -55,6 +55,10 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $layout->toHtml();
 
     }
+
+    public function view(){
+        
+    }
 }
 
 
